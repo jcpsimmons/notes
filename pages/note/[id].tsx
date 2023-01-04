@@ -1,8 +1,10 @@
+import { id } from "date-fns/locale";
+import Layout from "../../components/Layout";
 import { getNoteData, getNoteIds } from "../../lib/notes";
 
 export default function Post({ noteData }: { noteData: Note }) {
   return (
-    <div>
+    <Layout>
       {noteData.title}
       <br />
       {noteData.id}
@@ -10,7 +12,7 @@ export default function Post({ noteData }: { noteData: Note }) {
       {noteData.date}w
       <br />
       <div dangerouslySetInnerHTML={{ __html: noteData.contentHtml }} />
-    </div>
+    </Layout>
   );
 }
 
@@ -26,7 +28,6 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
 
 export async function getStaticPaths() {
   const noteIds = getNoteIds();
-  console.log("noteIds", noteIds);
 
   return {
     paths: noteIds.map((noteId) => {

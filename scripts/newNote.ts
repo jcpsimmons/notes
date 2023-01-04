@@ -19,5 +19,5 @@ tags: ""
 const noteFilename = `${uuid}.md`;
 
 await Deno.writeTextFile(`_notes/${noteFilename}`, content);
-console.log(`_notes/${noteFilename}`);
+
 await Deno.run({ cmd: ["code", `_notes/${noteFilename}`] }).status();

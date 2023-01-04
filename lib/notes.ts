@@ -46,7 +46,9 @@ export const gitDateToUnixDate = (dateStr: string) => {
 
 export const getNoteIds = (): string[] => {
   const rawNames = fs.readdirSync(NOTES_DIRECTORY);
-  const parsedNames = rawNames.map((rawName) => rawName.split(".")[0]);
+  const parsedNames = rawNames
+    .filter((fname) => fname.match(/.md$/))
+    .map((rawName) => rawName.split(".")[0]);
   return parsedNames;
 };
 
