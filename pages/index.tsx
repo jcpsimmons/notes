@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import { getAllNotesData } from "../lib/notes";
 
 import styles from "../styles/Home.module.css";
@@ -16,7 +17,7 @@ export default function Home({ notes }: { notes: Note[] }) {
           <ul>
             {notes.map((n) => (
               <li>
-                <a href={"/note/" + n.id}>{n.title}</a>
+                <Link href={"/note/" + n.id}>{n.title}</Link>
               </li>
             ))}
           </ul>
