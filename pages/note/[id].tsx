@@ -1,3 +1,5 @@
+import { Code, Stack, StackDivider, Text, VStack } from "@chakra-ui/react";
+import { format, formatDistance } from "date-fns";
 import { id } from "date-fns/locale";
 import Layout from "../../components/Layout";
 import { getNoteData, getNoteIds } from "../../lib/notes";
@@ -5,13 +7,20 @@ import { getNoteData, getNoteIds } from "../../lib/notes";
 export default function Post({ noteData }: { noteData: Note }) {
   return (
     <Layout>
-      {noteData.title}
-      <br />
-      {noteData.id}
-      <br />
-      {noteData.date}w
-      <br />
-      <div dangerouslySetInnerHTML={{ __html: noteData.contentHtml }} />
+      <VStack align={"left"}>
+        <Text fontSize={"4xl"} as="b">
+          {noteData.title}
+        </Text>
+        <Text fontSize={"xl"}>
+          Last edited:{" "}
+          {formatDistance(new Date(noteData.date * 1000), new Date())} ago.
+        </Text>
+        <Code display={"inline-block"} marginRight={"auto !important"}>
+          ID: {noteData.id}
+        </Code>
+
+        <div dangerouslySetInnerHTML={{ __html: noteData.contentHtml }} />
+      </VStack>
     </Layout>
   );
 }

@@ -11,8 +11,8 @@ type Props = {
 export default function NoteSearch({ notes, setNotes }: Props) {
   const [query, setQuery] = useState("");
 
-  const searcher = new FuzzySearch(notes, ["title", "contentHtml"], {
-    caseSensitive: false,
+  const searcher = new FuzzySearch(notes, ["title", "rawContent", "tags"], {
+    sort: true,
   });
 
   const handleChange = (e) => {

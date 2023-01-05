@@ -3,5 +3,6 @@ interface Note {
   contentHtml: string;
   date: number;
   title: string;
+  rawContent: string;
   tags?: string;
 }

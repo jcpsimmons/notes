@@ -1,14 +1,7 @@
 import React from "react";
 
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-} from "@chakra-ui/react";
+import { VStack, HStack, Text, Link } from "@chakra-ui/react";
+import NextLink from "next/link";
 
 type Props = {
   notes: Note[];
@@ -17,31 +10,24 @@ type Props = {
 export default function NotesTable({ notes }: Props) {
   return (
     <>
-      <TableContainer>
-        <Table variant="striped" size="lg">
-          <Thead>
-            <Tr>
-              <Th>Title</Th>
-              <Th>Tags</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {notes.map((note) => (
-              <Tr
-                onClick={() => (window.location.href = `/note/${note.id}`)}
-                _hover={{
-                  background: "cyan.300",
-                  cursor: "pointer",
-                }}
-              >
-                <Td>{note.title}</Td>
-
-                <Td>{note.tags}</Td>
-              </Tr>
-            ))}
-          </Tbody>
-        </Table>
-      </TableContainer>
+      <VStack>
+        {notes.map((note) => (
+          <Link
+            as={NextLink}
+            href={`/note/${note.id}`}
+            _hover={{
+              transform: "scale(1.05)",
+              animationDuration: "250ms",
+            }}
+          >
+            <HStack>
+              <Text fontSize={"xl"} as="b">
+                {note.title}
+              </Text>
+            </HStack>
+          </Link>
+        ))}
+      </VStack>
     </>
   );
 }

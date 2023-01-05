@@ -35,6 +35,7 @@ export const getNoteData = async (id: string) => {
     contentHtml,
     title,
     tags,
+    rawContent: matterResult.content,
     date: modDate ? gitDateToUnixDate(modDate) : Date.now(),
   };
 };
