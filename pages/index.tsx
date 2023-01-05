@@ -1,11 +1,14 @@
 import Head from "next/head";
-import NextLink from "next/link";
-import { Link } from "@chakra-ui/react";
+
 import Layout from "../components/Layout";
 import { getAllNotesData } from "../lib/notes";
 import NotesTable from "../components/NotesTable";
+import { useState } from "react";
+import NoteSearch from "../components/NoteSearch";
 
-export default function Home({ notes }: { notes: Note[] }) {
+export default function Home({ notes: initialNotes }: { notes: Note[] }) {
+  const [notes, setNotes] = useState(initialNotes);
+
   return (
     <Layout>
       <Head>
@@ -14,6 +17,7 @@ export default function Home({ notes }: { notes: Note[] }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <NoteSearch notes={initialNotes} setNotes={setNotes} />
         <NotesTable notes={notes} />
       </main>
     </Layout>
