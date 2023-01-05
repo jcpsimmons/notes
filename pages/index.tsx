@@ -1,7 +1,9 @@
 import Head from "next/head";
-import Link from "next/link";
+import NextLink from "next/link";
+import { Link } from "@chakra-ui/react";
 import Layout from "../components/Layout";
 import { getAllNotesData } from "../lib/notes";
+import NotesTable from "../components/NotesTable";
 
 export default function Home({ notes }: { notes: Note[] }) {
   return (
@@ -12,22 +14,14 @@ export default function Home({ notes }: { notes: Note[] }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div>
-          <ul>
-            {notes.map((n) => (
-              <li>
-                <Link href={"/note/" + n.id}>{n.title}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <NotesTable notes={notes} />
       </main>
     </Layout>
   );
 }
 export async function getStaticProps() {
   const allNotes = await getAllNotesData();
-
+  console.log(allNotes.map((n) => n.id));
   return {
     props: { notes: allNotes },
   };
