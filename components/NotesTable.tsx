@@ -20,11 +20,19 @@ export default function NotesTable({ notes }: Props) {
               animationDuration: "250ms",
             }}
           >
-            <HStack>
+            <VStack
+              transitionDuration={"250ms"}
+              _hover={{ backgroundColor: "gray.100" }}
+              marginBottom={"10px"}
+              backgroundColor="gray.50"
+              p="20px"
+              rounded={"10px"}
+            >
               <Text fontSize={"xl"} as="b">
                 {note.title}
               </Text>
-            </HStack>
+              <Text fontSize={"xs"}>boop</Text>
+            </VStack>
           </Link>
         ))}
       </VStack>
